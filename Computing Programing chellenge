@@ -1,0 +1,25 @@
+import random
+import re
+import time
+
+arrayofusernames = []
+arrayofpasswords = []
+
+arrayofsongs = []
+arrayofartists = []
+
+def usernamePassword(arrayofusernames, arrayofpasswords):
+    fileofusername = open("UsernamesAndPasswords.txt", "r")
+
+    for line in fileofusername:
+        a = line.split(",")
+        arrayofusernames.append(a[0])
+
+        passwords = a[1]
+        arrayofpasswords.append(passwords[:-1])
+
+    return arrayofusernames
+    return arrayofpasswords
+
+print(arrayofusernames)
+print(arrayofpasswords)
