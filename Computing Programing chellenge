@@ -28,21 +28,21 @@ def usernamePassword(arrayofusernames, arrayofpasswords):
 usernamePassword(arrayofusernames, arrayofpasswords)
 
 def checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI):
-    uua = input("Enter your username :   ")
-    upa = input("Enter your password :   ")
-    if uua not in arrayofusernames or upa not in arrayofpasswords:
+    uui = input("Enter your username:   ")
+    upi = input("Enter your password:   ")
+    if uui not in arrayofusernames or upi not in arrayofpasswords:
         print("Incorrect username or password.")
     else:
-        uuaI = arrayofusernames.index(uua)
-        upaI = arrayofpasswords.index(upa)
+        uuiI = arrayofusernames.index(uui)
+        upiI = arrayofpasswords.index(upi)
     if uuaI != upaI:
         print("Incorrect username or password.")
     else:
-        print(f"Welcome {uua}")
+        print(f"Welcome {uui}")
 
 
-    return uuaI
-    return upaI
+    return uuiI
+    return upiI
 
 checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI)
 
