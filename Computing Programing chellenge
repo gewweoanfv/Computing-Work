@@ -50,5 +50,5 @@ checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI)
 print(f"username index is {uuaI}")
 print(f"password index is {upaI}")
 
-print(arrayofusernames)
-print(arrayofpasswords)
+
+
