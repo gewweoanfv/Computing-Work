@@ -33,7 +33,6 @@ def checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI):
     if uua not in arrayofusernames or upa not in arrayofpasswords:
         print("Incorrect username or password.")
     else:
-        time.sleep(0.1)
         uuaI = arrayofusernames.index(uua)
         upaI = arrayofpasswords.index(upa)
     if uuaI != upaI:
