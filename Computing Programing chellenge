@@ -24,5 +24,19 @@ def usernamePassword(arrayofusernames, arrayofpasswords):
 
 usernamePassword(arrayofusernames, arrayofpasswords)
 
+def checkLogin(arrayofusernames, arrayofpasswords):
+    uua = input("Enter your username :   ")
+    upa = input("Enter your password :   ")
+    if uua not in arrayofusernames or upa not in arrayofpasswords:
+        print("Incorrect username or password.")
+    else:
+        uuaI = arrayofusernames.index(uua)
+        upaI = arrayofpasswords.index(upa)
+
+
+
+
+
+
 print(arrayofusernames)
 print(arrayofpasswords)
