@@ -8,6 +8,9 @@ arrayofpasswords = []
 arrayofsongs = []
 arrayofartists = []
 
+uuaI = 0
+upaI = 0
+
 def usernamePassword(arrayofusernames, arrayofpasswords):
     fileofusername = open("UsernamesAndPasswords.txt", "r")
 
@@ -16,7 +19,7 @@ def usernamePassword(arrayofusernames, arrayofpasswords):
         arrayofusernames.append(a[0])
 
         b = a[1]
-        arrayofpasswords.append(b.stip())
+        arrayofpasswords.append(b.strip())
 
     return arrayofusernames
     return arrayofpasswords
@@ -24,17 +27,32 @@ def usernamePassword(arrayofusernames, arrayofpasswords):
 
 usernamePassword(arrayofusernames, arrayofpasswords)
 
-def checkLogin(arrayofusernames, arrayofpasswords):
+def checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI):
     uua = input("Enter your username :   ")
     upa = input("Enter your password :   ")
     if uua not in arrayofusernames or upa not in arrayofpasswords:
         print("Incorrect username or password.")
     else:
+        time.sleep(0.1)
         uuaI = arrayofusernames.index(uua)
         upaI = arrayofpasswords.index(upa)
+    if uuaI != upaI:
+        print("Incorrect username or password.")
+    else:
+        print(f"Welcome {uua}")
+
+
+    return uuaI
+    return upaI
+
+checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI)
+
 
 print(f"username index is {uuaI}")
 print(f"password index is {upaI}")
+
+
+
 
 
 
