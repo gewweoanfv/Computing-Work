@@ -15,8 +15,8 @@ def usernamePassword(arrayofusernames, arrayofpasswords):
         a = line.split(",")
         arrayofusernames.append(a[0])
 
-        passwords = a[1]
-        arrayofpasswords.append(passwords[:-1])
+        b = a[1]
+        arrayofpasswords.append(b.stip())
 
     return arrayofusernames
     return arrayofpasswords
