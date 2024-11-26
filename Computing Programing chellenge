@@ -33,7 +33,8 @@ def checkLogin(arrayofusernames, arrayofpasswords):
         uuaI = arrayofusernames.index(uua)
         upaI = arrayofpasswords.index(upa)
 
-
+print(f"username index is {uuaI}")
+print(f"password index is {upaI}")
 
 
 
