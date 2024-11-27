@@ -11,11 +11,11 @@ arrayofartists = []
 uuaI = 0
 upaI = 0
 
-def usernamePassword(arrayofusernames, arrayofpasswords):
+def usernamefile(arrayofusernames, arrayofpasswords):
     fileofusername = open("UsernamesAndPasswords.txt", "r")
 
     for line in fileofusername:
-        a = line.split(",")
+        a = line.split(", ")
         arrayofusernames.append(a[0])
 
         b = a[1]
@@ -24,10 +24,7 @@ def usernamePassword(arrayofusernames, arrayofpasswords):
     return arrayofusernames
     return arrayofpasswords
 
-
-usernamePassword(arrayofusernames, arrayofpasswords)
-
-def checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI):
+def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
     uui = input("Enter your username:   ")
     upi = input("Enter your password:   ")
     if uui not in arrayofusernames or upi not in arrayofpasswords:
@@ -38,14 +35,25 @@ def checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI):
     if uuaI != upaI:
         print("Incorrect username or password.")
     else:
-        print(f"Welcome {uui}")
-
+        print(f"Welcome to the Song Guessing game {uui}")
+        validlogin = True
 
     return uuiI
     return upiI
+    return validlogin
 
-checkLogin(arrayofusernames, arrayofpasswords, uuaI, upaI)
+usernamefile(arrayofusernames, arrayofpasswords)
+loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI)
 
+def songfile(arrayofsongs, arrayofartists):
+    fileofsongs = open("SongsAndArtists.txt", "r")
 
-print(f"username index is {uuaI}")
-print(f"password index is {upaI}")
+    for song in fileofsongs:
+        c = song.split(", ")
+        arrayofsongs.append(c[0])
+
+        d = a[1]
+        arrayofartists.append(d.strip())
+
+    return arrayofsongs
+    return arrayofartists
