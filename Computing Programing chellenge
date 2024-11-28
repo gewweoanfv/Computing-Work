@@ -25,7 +25,7 @@ def usernamefile(arrayofusernames, arrayofpasswords):
 
 def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
     
-    uui = input(20 * "Enter your username:   ")
+    uui = input("Enter your username:   ")
     upi = input("Enter your password:   ")
     
     if uui not in arrayofusernames or upi not in arrayofpasswords:
@@ -67,6 +67,10 @@ def randomSong(arrayofsongs):
     randint = random.randint(len(arrayofsongs))
     randSong = arrayofsongs[randint]
 
-def songGame(arrayofsongs, arrayofartists, uui,):
-
+def songGame(arrayofsongs, arrayofartists, uui, randSong):
+    SongName = next(zip(*randSong.split()))
+    print(SongName)
     
+
+randomSong(arrayofsongs)
+songGame(arrayofsongs, arrayofartists, uui, randSong)
