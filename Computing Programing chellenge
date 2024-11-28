@@ -35,7 +35,7 @@ def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
     if uuaI != upaI:
         print("Incorrect username or password.")
     else:
-        print(f"Welcome to the Song Guessing game {uui}")
+        print(f"Welcome to the Song Guessing game {uui}!")
         validlogin = True
 
     return uuiI
