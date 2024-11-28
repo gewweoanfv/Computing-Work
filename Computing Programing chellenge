@@ -1,5 +1,4 @@
 import random
-import re
 import time
 
 arrayofusernames = []
@@ -25,13 +24,16 @@ def usernamefile(arrayofusernames, arrayofpasswords):
     return arrayofpasswords
 
 def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
+    
     uui = input("Enter your username:   ")
     upi = input("Enter your password:   ")
+    
     if uui not in arrayofusernames or upi not in arrayofpasswords:
         print("Incorrect username or password.")
     else:
         uuiI = arrayofusernames.index(uui)
         upiI = arrayofpasswords.index(upi)
+    
     if uuaI != upaI:
         print("Incorrect username or password.")
     else:
@@ -45,7 +47,7 @@ def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
 usernamefile(arrayofusernames, arrayofpasswords)
 loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI)
 
-def songfile(arrayofsongs, arrayofartists):
+def songFile(arrayofsongs, arrayofartists):
     fileofsongs = open("SongsAndArtists.txt", "r")
 
     for song in fileofsongs:
@@ -57,6 +59,8 @@ def songfile(arrayofsongs, arrayofartists):
 
     return arrayofsongs
     return arrayofartists
+
+songFile(arrayofsongs, arrayofartists)
 
 def songGame(arrayofsongs, arrayofartists, uui,):
     
