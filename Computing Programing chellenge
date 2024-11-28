@@ -24,20 +24,20 @@ def usernamefile(arrayofusernames, arrayofpasswords):
     return arrayofpasswords
 
 def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
-    
+
     uui = input("Enter your username:   ")
     upi = input("Enter your password:   ")
-    
+
     if uui not in arrayofusernames or upi not in arrayofpasswords:
         print("Incorrect username or password.")
     else:
         uuiI = arrayofusernames.index(uui)
         upiI = arrayofpasswords.index(upi)
-    
+
     if uuaI != upaI:
         print("Incorrect username or password.")
     else:
-    
+
         print(f"Welcome to the Song Guessing game {uui}!")
         validlogin = True
 
@@ -55,7 +55,7 @@ def songFile(arrayofsongs, arrayofartists):
         c = song.split(", ")
         arrayofsongs.append(c[0])
 
-        d = a[1]
+        d = c[1]
         arrayofartists.append(d.strip())
 
     return arrayofsongs
@@ -64,13 +64,15 @@ def songFile(arrayofsongs, arrayofartists):
 songFile(arrayofsongs, arrayofartists)
 
 def randomSong(arrayofsongs):
-    randint = random.randint(len(arrayofsongs))
-    randSong = arrayofsongs[randint]
+    randint = random.randint(0,len(arrayofsongs) - 1)
+    global randSong == arrayofsongs[randint]
 
-def songGame(arrayofsongs, arrayofartists, uui, randSong):
+    return randSong
+
+def songGame(arrayofsongs, arrayofartists, randSong):
     SongName = next(zip(*randSong.split()))
     print(SongName)
-    
+
 
 randomSong(arrayofsongs)
-songGame(arrayofsongs, arrayofartists, uui, randSong)
+songGame(arrayofsongs, arrayofartists, randSong)
