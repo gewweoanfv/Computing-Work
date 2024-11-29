@@ -1,5 +1,6 @@
 import random
 import time
+import re
 
 arrayofusernames = []
 arrayofpasswords = []
@@ -9,6 +10,9 @@ arrayofartists = []
 
 uuaI = 0
 upaI = 0
+
+randSong = ""
+nameSong = ""
 
 def usernamefile(arrayofusernames, arrayofpasswords):
     fileofusername = open("UsernamesAndPasswords.txt", "r")
@@ -37,13 +41,15 @@ def loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI):
     if uuaI != upaI:
         print("Incorrect username or password.")
     else:
-
         print(f"Welcome to the Song Guessing game {uui}!")
         validlogin = True
-
-    return uuiI
-    return upiI
-    return validlogin
+    time.sleep(0.1)
+    if validlogin == True:
+        return uuiI
+        return upiI
+        return validlogin
+    else:
+        exit()
 
 usernamefile(arrayofusernames, arrayofpasswords)
 loginSystem(arrayofusernames, arrayofpasswords, uuaI, upaI)
@@ -63,16 +69,26 @@ def songFile(arrayofsongs, arrayofartists):
 
 songFile(arrayofsongs, arrayofartists)
 
-def randomSong(arrayofsongs):
+def randomSongPicker(arrayofsongs, randSong):
     randint = random.randint(0,len(arrayofsongs) - 1)
-    global randSong == arrayofsongs[randint]
+    randSong = arrayofsongs[randint]
+    rsi = arrayofsongs.index(randSong)
+    randArtist = arrayofartists[rsi]
 
+    return randArtist
     return randSong
 
-def songGame(arrayofsongs, arrayofartists, randSong):
-    SongName = next(zip(*randSong.split()))
-    print(SongName)
+randSong = randomSongPicker(arrayofsongs, randSong)
+
+def songName(arrayofsongs, randSong, nameSong):
+    nameSong = re.findall(r'\b\w', randSong)  
+    return "".join(nameSong)  
+
+first_letters = songName(arrayofsongs, randSong, nameSong)
+print(first_letters + " by " + randArtist)
+
+#def songGame(arrayofsongs, arrayofartists, randSong):
 
 
-randomSong(arrayofsongs)
-songGame(arrayofsongs, arrayofartists, randSong)
+
+#songGame(arrayofsongs, arrayofartists)
