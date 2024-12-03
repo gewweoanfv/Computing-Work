@@ -1,0 +1,65 @@
+import random
+import time
+import re
+
+arrayofusernames = []
+arrayofpasswords = []
+
+arrayofsongs = []
+arrayofartists = []
+
+uuiI = 0
+upiI = 0
+
+randSong = ""
+nameSong = ""
+
+def usernamefile(arrayofusernames, arrayofpasswords):
+    fileofusername = open("UsernamesAndPasswords.txt", "r")
+    for line in fileofusername:
+        a = line.split(", ")
+        arrayofusernames.append(a[0])
+        arrayofpasswords.append(a[1].strip())
+    return arrayofusernames
+    return arrayofpasswords 
+
+def loginSystem(arrayofusernames, arrayofpasswords):
+    while True:
+        uui = input("Enter your username:   ")
+        upi = input("Enter your password:   ")
+        if uui in arrayofusernames and upi == arrayofpasswords[arrayofusernames.index(uui)]:
+            global uuiI, upiI  
+            uuiI = arrayofusernames.index(uui)
+            upiI = arrayofpasswords.index(upi)
+            print(f"Welcome to the Song Guessing game {uui}!")
+            return True
+        else:
+            print("Incorrect username or password. Please try again.")
+
+def songFile(arrayofsongs, arrayofartists):
+    fileofsongs = open("SongsAndArtists.txt", "r")
+    for song in fileofsongs:
+        c = song.split(", ")
+        arrayofsongs.append(c[0])
+        arrayofartists.append(c[1].strip())
+    return arrayofsongs
+    return arrayofartists
+
+def randomSongPicker(arrayofsongs):
+    randint = random.randint(0, len(arrayofsongs) - 1)
+    return arrayofsongs[randint]
+
+def songName(arrayofsongs, randSong):
+    nameSong = re.findall(r'\b\w', randSong)
+    return "".join(nameSong)
+
+arrayofusernames, arrayofpasswords = usernamefile(arrayofusernames, arrayofpasswords)
+
+if loginSystem(arrayofusernames, arrayofpasswords):
+    arrayofsongs, arrayofartists = songFile(arrayofsongs, arrayofartists)
+    randSong = randomSongPicker(arrayofsongs)
+    first_letters = songName(arrayofsongs, randSong)
+    print(first_letters)
+else:
+    print("Login Failed, exiting!")
+    exit()
