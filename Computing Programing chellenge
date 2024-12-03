@@ -30,45 +30,22 @@ def usernamefile(arrayofusernames, arrayofpasswords):
     return arrayofusernames
     return arrayofpasswords
 
-def loginSystem(arrayofusernames, arrayofpasswords, uuiI, upiI, validlogin):
-
+    
+def loginSystem(arrayofusernames, arrayofpasswords):
     uui = input("Enter your username:   ")
     upi = input("Enter your password:   ")
 
-    if uui not in arrayofusernames:
-        if upi not in arrayofpasswords:
-            print("Incorrect username or password.")
-            validlogin = False
-            exit()
-        else:
-            validlogin = True
-            uuiI = arrayofusernames.index(uui)
-            upiI = arrayofpasswords.index(upi)
-    if validlogin != False:
-        if uuiI != upiI:
-            print("Incorrect username or password.")
-            validlogin = False
-            exit()
-        else:
-            validlogin = True
-            if uuiI == upiI:
-                if validlogin == True:
-                    print(f"Welcome to the Song Guessing game {uui}!")
-                    validlogin = True
-
-                time.sleep(0.1)
-
-                if validlogin == True:
-
-                    return uuiI
-                    return upiI
-                    return validlogin
-            else:
-                exit()
+        
+    if uui in arrayofusernames and upi == arrayofpasswords[arrayofusernames.index(uui)]: 
+        print(f"Welcome to the Song Guessing game {uui}!")
+        return True  
+    else:
+        print("Incorrect username or password.")
+        return False  
 
 
 usernamefile(arrayofusernames, arrayofpasswords)
-loginSystem(arrayofusernames, arrayofpasswords, uuiI, upiI, validlogin)
+loginSystem(arrayofusernames, arrayofpasswords)
 
 def songFile(arrayofsongs, arrayofartists):
     fileofsongs = open("SongsAndArtists.txt", "r")
