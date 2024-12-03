@@ -30,18 +30,20 @@ def usernamefile(arrayofusernames, arrayofpasswords):
     return arrayofusernames
     return arrayofpasswords
 
-    
-def loginSystem(arrayofusernames, arrayofpasswords):
-    uui = input("Enter your username:   ")
-    upi = input("Enter your password:   ")
 
-        
-    if uui in arrayofusernames and upi == arrayofpasswords[arrayofusernames.index(uui)]: 
+def loginSystem(arrayofusernames, arrayofpasswords):
+    while True:
+        uui = input("Enter your username:   ")
+        upi = input("Enter your password:   ")
+
+
+    if uui in arrayofusernames and upi == arrayofpasswords[arrayofusernames.index(uui)]:
         print(f"Welcome to the Song Guessing game {uui}!")
-        return True  
+        return True
+
     else:
         print("Incorrect username or password.")
-        return False  
+        return False
 
 
 usernamefile(arrayofusernames, arrayofpasswords)
@@ -71,17 +73,20 @@ def randomSongPicker(arrayofsongs, randSong, randArtist):
     return randArtist
     return randSong
 
-randSong = randomSongPicker(arrayofsongs, randSong, randArtist)
+
 
 def songName(arrayofsongs, randSong, nameSong):
     nameSong = re.findall(r'\b\w', randSong)
     return "".join(nameSong)
 
-first_letters = songName(arrayofsongs, randSong, nameSong)
-print(first_letters + " by " + randArtist)
+
 
 #def songGame(arrayofsongs, arrayofartists, randSong):
 
-
-
-#songGame(arrayofsongs, arrayofartists)
+if loginSystem(arrayofusernames, arrayofpasswords):
+    randSong = randomSongPicker(arrayofsongs, randSong, randArtist)
+    first_letters = songName(arrayofsongs, randSong, nameSong)
+    print(first_letters + " by " + randArtist)
+    #songGame(arrayofsongs, arrayofartists)
+else:
+    exit()
