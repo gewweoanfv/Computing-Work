@@ -16,6 +16,7 @@ upiI = 0
 randSong = ""
 nameSong = ""
 randArtist = ""
+randint = ""
 
 def usernamefile(arrayofusernames, arrayofpasswords):
     fileofusername = open("UsernamesAndPasswords.txt", "r")
@@ -32,7 +33,7 @@ def usernamefile(arrayofusernames, arrayofpasswords):
 
 
 def loginSystem(arrayofusernames, arrayofpasswords):
-    
+
     uui = input("Enter your username:   ")
     upi = input("Enter your password:   ")
 
@@ -47,17 +48,16 @@ def loginSystem(arrayofusernames, arrayofpasswords):
 
 
 usernamefile(arrayofusernames, arrayofpasswords)
-loginSystem(arrayofusernames, arrayofpasswords)
 
 def songFile(arrayofsongs, arrayofartists):
     fileofsongs = open("SongsAndArtists.txt", "r")
 
     for song in fileofsongs:
         c = song.split(", ")
-        arrayofartists.append(c[0])
+        arrayofsongs.append(c[0])
 
         d = c[1]
-        arrayofsongs.append(d.strip())
+        arrayofartists.append(d.strip())
 
     return arrayofsongs
     return arrayofartists
@@ -68,23 +68,29 @@ def randomSongPicker(arrayofsongs):
     randint = random.randint(0, len(arrayofsongs) - 1)
     randsong = arrayofsongs[randint]
     randArtist = arrayofartists[randint]
-    return randArtist
+
+    return randint
     return randSong
 
 
 
-def songName(arrayofsongs, randSong, nameSong):
-    nameSong = re.findall(r'\b\w', randSong)
-    return "".join(nameSong + " by " + randArtist)
+def songName(arrayofsongs, arrayofartists, randint):
+    nameSong = ""
+    for word in arrayofsongs[randint].split():
+        nameSong += word[0]
+
+    return nameSong
+    return randint
 
 
 
-#def songGame(arrayofsongs, arrayofartists, randSong):
+def songGame(arrayofsongs, arrayofartists, randint):
+    print(arrayofsongs[randint])
 
 if loginSystem(arrayofusernames, arrayofpasswords):
-    randSong = randomSongPicker(arrayofsongs)
-    first_letters = songName(arrayofsongs, randSong, nameSong)
-    print(first_letters)
-    #songGame(arrayofsongs, arrayofartists)
+    randint = randomSongPicker(arrayofsongs)
+    first_letters = songName(arrayofsongs, arrayofartists, randint)
+    print(first_letters + " by " + arrayofartists[randint])
+    songGame(arrayofsongs, arrayofartists, randint)
 else:
     exit()
