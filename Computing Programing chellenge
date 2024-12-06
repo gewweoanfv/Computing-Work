@@ -33,30 +33,30 @@ def usernamefile(arrayofusernames, arrayofpasswords):
 
 def loginSystem(arrayofusernames, arrayofpasswords):
 
-    uui = input("Enter your username:   ")
-    upi = input("Enter your password:   ")
+    uui = input("Enter your username:   ") # User input username
+    upi = input("Enter your password:   ") # User inputs password
 
 
-    if uui in arrayofusernames and upi == arrayofpasswords[arrayofusernames.index(uui)]:
+    if uui in arrayofusernames and upi == arrayofpasswords[arrayofusernames.index(uui)]: # compares if the usernames input is in the array and if the users inputted password is the same as the one at the index of the inputted username
         print(f"Welcome to the Song Guessing game {uui}!")
-        return True
+        return True # returns the function as true
 
     else:
-        print("Incorrect username or password.")
-        return False
+        print("Incorrect username or password.") # tells the user if login was succesful
+        return False # retusn the function as false
 
 
 usernamefile(arrayofusernames, arrayofpasswords)
 
 def songFile(arrayofsongs, arrayofartists):
-    fileofsongs = open("SongsAndArtists.txt", "r")
+    fileofsongs = open("SongsAndArtists.txt", "r") # opens the file to be read
 
     for song in fileofsongs:
-        c = song.split(", ")
-        arrayofsongs.append(c[0])
+        c = song.split(", ") # Splits the data in the file into songs and artists
+        arrayofsongs.append(c[0]) # adds the songs to the array
 
         d = c[1]
-        arrayofartists.append(d.strip())
+        arrayofartists.append(d.strip()) # Adds the artists to the array
 
     return arrayofsongs
     return arrayofartists
@@ -64,30 +64,59 @@ def songFile(arrayofsongs, arrayofartists):
 songFile(arrayofsongs, arrayofartists)
 
 def randomSongPicker(arrayofsongs):
-    randint = random.randint(0, len(arrayofsongs) - 1)
-    randsong = arrayofsongs[randint]
+    randint = random.randint(0, len(arrayofsongs) - 1) # Choses a random integer
+    randsong = arrayofsongs[randint] # Choses the random song
 
     return randint
     return randSong
 
-
+randint = randomSongPicker(arrayofsongs)
 
 def songName(arrayofsongs, arrayofartists, randint):
-    nameSong = ""
-    for word in arrayofsongs[randint].split():
-        nameSong += word[0]
+    nameSong = "" #assigns the variable nameSong
+    for word in arrayofsongs[randint].split(): # looks at each word in the chosen song in which each letter is seperate
+        nameSong += word[0] # Adds the first letter of each word to the variable nameSong
 
     return nameSong
     return randint
 
 
+
 def songGame(arrayofsongs, arrayofartists, randint):
-    print(arrayofsongs[randint])
+    wrong = 0
+    score = 0
+    while wrong != 2:
+        first_letters = songName(arrayofsongs, arrayofartists, randint)
+        print(first_letters + " by " + arrayofartists[randint])
+        guess = input("What is the name of this song?   ")
+        if guess == arrayofsongs[randint]: # Use the correct song name
+            score += 3
+            wrong = 0  # Reset wrong to 0 for a correct guess
+            print("Correct. Here is the next song!")
+            randint = randomSongPicker(arrayofsongs) # Get a new random song 
+        elif guess != arrayofsongs[randint]:  # Use the correct song name
+            wrong += 1
+            if wrong == 2:
+                print("That is incorrect. Game over!")
+                print("Your final score is:", score)  # Print score here
+            else:
+                guess2 = input("Incorrect. What is the name of this song?   ")
+                if guess2 == arrayofsongs[randint]: # Use the correct song name
+                    score += 1
+                    wrong = 0  # Reset wrong to 0 for a correct guess
+                    print("Correct. Here is the next song!")
+                    randint = randomSongPicker(arrayofsongs) # Get a new random song 
+                else:
+                    print("That is incorrect. Game over!")
+                    print("Your final score is:", score)  # Print score here
+                    wrong = 2  # End the game
+        else:
+            print("Unknown error")
+            exit()
+
+
 
 if loginSystem(arrayofusernames, arrayofpasswords):
-    randint = randomSongPicker(arrayofsongs)
-    first_letters = songName(arrayofsongs, arrayofartists, randint)
-    print(first_letters + " by " + arrayofartists[randint])
     songGame(arrayofsongs, arrayofartists, randint)
 else:
     exit()
