@@ -1,6 +1,5 @@
 import random
 import time
-import re
 
 arrayofusernames = []
 arrayofpasswords = []
@@ -67,7 +66,6 @@ songFile(arrayofsongs, arrayofartists)
 def randomSongPicker(arrayofsongs):
     randint = random.randint(0, len(arrayofsongs) - 1)
     randsong = arrayofsongs[randint]
-    randArtist = arrayofartists[randint]
 
     return randint
     return randSong
@@ -81,7 +79,6 @@ def songName(arrayofsongs, arrayofartists, randint):
 
     return nameSong
     return randint
-
 
 
 def songGame(arrayofsongs, arrayofartists, randint):
