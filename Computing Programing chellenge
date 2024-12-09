@@ -12,13 +12,16 @@ validlogin = True
 uuiI = 0
 upiI = 0
 
+score = 0
+
+uui = ""
 randSong = ""
 nameSong = ""
 randArtist = ""
 randint = ""
 
 def usernamefile(arrayofusernames, arrayofpasswords):
-    fileofusername = open("UsernamesAndPasswords.txt", "r") # opens the file to be read
+    fileofusername = open(r"UsernamesAndPasswords.txt", "r") # opens the file to be read
 
     for line in fileofusername:
         a = line.split(", ") # splits the usernames from the passwords
@@ -31,7 +34,7 @@ def usernamefile(arrayofusernames, arrayofpasswords):
     return arrayofpasswords
 
 
-def loginSystem(arrayofusernames, arrayofpasswords):
+def loginSystem(arrayofusernames, arrayofpasswords, uui):
 
     uui = input("Enter your username:   ") # User input username
     upi = input("Enter your password:   ") # User inputs password
@@ -45,11 +48,13 @@ def loginSystem(arrayofusernames, arrayofpasswords):
         print("Incorrect username or password.") # tells the user if login was succesful
         return False # retusn the function as false
 
+    return uui
+
 
 usernamefile(arrayofusernames, arrayofpasswords)
 
 def songFile(arrayofsongs, arrayofartists):
-    fileofsongs = open("SongsAndArtists.txt", "r") # opens the file to be read
+    fileofsongs = open(r"SongsAndArtists.txt", "r") # opens the file to be read
 
     for song in fileofsongs:
         c = song.split(", ") # Splits the data in the file into songs and artists
@@ -82,19 +87,18 @@ def songName(arrayofsongs, arrayofartists, randint):
 
 
 
-def songGame(arrayofsongs, arrayofartists, randint):
+def songGame(arrayofsongs, arrayofartists, randint, score, uui):
     wrong = 0
-    score = 0
     while wrong != 2:
         first_letters = songName(arrayofsongs, arrayofartists, randint)
         print(first_letters + " by " + arrayofartists[randint])
-        guess = input("What is the name of this song?   ")
         time.sleep(0.1) # 0.1 second delay
+        guess = input("What is the name of this song?   ")
         if guess == arrayofsongs[randint]: # Use the correct song name
             score += 3
             wrong = 0  # Reset wrong to 0 for a correct guess
             print("Correct. Here is the next song!")
-            randint = randomSongPicker(arrayofsongs) # Get a new random song 
+            randint = randomSongPicker(arrayofsongs) # Get a new random song
         elif guess != arrayofsongs[randint]:  # Use the correct song name
             wrong += 1
             if wrong == 2:
@@ -108,10 +112,12 @@ def songGame(arrayofsongs, arrayofartists, randint):
                     wrong = 0  # Reset wrong to 0 for a correct guess
                     print("Correct. Here is the next song!")
                     time.sleep(0.1)
-                    randint = randomSongPicker(arrayofsongs) # Get a new random song 
+                    randint = randomSongPicker(arrayofsongs) # Get a new random song
                 else:
                     print("That is incorrect. Game over!")
-                    print("Your final score is:", score)  # Prints the score here
+                    print(score)
+                    with open(r"Scores.txt" , "w+") as s:
+                        s.write(str(score) + ", " + uui)  # Prints the score here
                     wrong = 2  # End the game
         else:
             time.sleep(1)
@@ -119,10 +125,9 @@ def songGame(arrayofsongs, arrayofartists, randint):
             exit()
 
 
-
-if loginSystem(arrayofusernames, arrayofpasswords): # Checks if the login system returns True
-    songGame(arrayofsongs, arrayofartists, randint) # Runs the song game if the correct user accesses it
+if loginSystem(arrayofusernames, arrayofpasswords, uui): # Checks if the login system returns True
+    songGame(arrayofsongs, arrayofartists, randint, score, uui) # Runs the song game if the correct user accesses it
 else:
     exit()
 
-#def scorefileWrite():
+
