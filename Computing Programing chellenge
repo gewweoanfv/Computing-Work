@@ -1,5 +1,5 @@
-import random
-import time
+import random # this is to get a random integer
+import time # this is to get a delay to make sure the program runs smoothly
 
 arrayofusernames = []
 arrayofpasswords = []
@@ -18,14 +18,14 @@ randArtist = ""
 randint = ""
 
 def usernamefile(arrayofusernames, arrayofpasswords):
-    fileofusername = open("UsernamesAndPasswords.txt", "r")
+    fileofusername = open("UsernamesAndPasswords.txt", "r") # opens the file to be read
 
     for line in fileofusername:
-        a = line.split(", ")
-        arrayofusernames.append(a[0])
+        a = line.split(", ") # splits the usernames from the passwords
+        arrayofusernames.append(a[0]) # adds the usernames to the array
 
         b = a[1]
-        arrayofpasswords.append(b.strip())
+        arrayofpasswords.append(b.strip()) # adds the passwords to the array
 
     return arrayofusernames
     return arrayofpasswords
@@ -89,6 +89,7 @@ def songGame(arrayofsongs, arrayofartists, randint):
         first_letters = songName(arrayofsongs, arrayofartists, randint)
         print(first_letters + " by " + arrayofartists[randint])
         guess = input("What is the name of this song?   ")
+        time.sleep(0.1) # 0.1 second delay
         if guess == arrayofsongs[randint]: # Use the correct song name
             score += 3
             wrong = 0  # Reset wrong to 0 for a correct guess
@@ -98,6 +99,7 @@ def songGame(arrayofsongs, arrayofartists, randint):
             wrong += 1
             if wrong == 2:
                 print("That is incorrect. Game over!")
+                time.sleep(0.1)
                 print("Your final score is:", score)  # Print score here
             else:
                 guess2 = input("Incorrect. What is the name of this song?   ")
@@ -105,18 +107,22 @@ def songGame(arrayofsongs, arrayofartists, randint):
                     score += 1
                     wrong = 0  # Reset wrong to 0 for a correct guess
                     print("Correct. Here is the next song!")
+                    time.sleep(0.1)
                     randint = randomSongPicker(arrayofsongs) # Get a new random song 
                 else:
                     print("That is incorrect. Game over!")
-                    print("Your final score is:", score)  # Print score here
+                    print("Your final score is:", score)  # Prints the score here
                     wrong = 2  # End the game
         else:
-            print("Unknown error")
+            time.sleep(1)
+            print("Unknown error") # prints error if an unexpected logic error happens
             exit()
 
 
 
-if loginSystem(arrayofusernames, arrayofpasswords):
-    songGame(arrayofsongs, arrayofartists, randint)
+if loginSystem(arrayofusernames, arrayofpasswords): # Checks if the login system returns True
+    songGame(arrayofsongs, arrayofartists, randint) # Runs the song game if the correct user accesses it
 else:
     exit()
+
+#def scorefileWrite():
