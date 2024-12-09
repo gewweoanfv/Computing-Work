@@ -117,7 +117,7 @@ def songGame(arrayofsongs, arrayofartists, randint, score, uui):
                     print("That is incorrect. Game over!")
                     print(score)
                     with open(r"Scores.txt" , "w+") as s:
-                        s.write(str(score) + ", " + uui)  # Prints the score here
+                        s.write(str(score) + f", {uui} ")  # Prints the score here
                     wrong = 2  # End the game
         else:
             time.sleep(1)
