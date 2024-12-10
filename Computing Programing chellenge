@@ -125,9 +125,8 @@ def songGame(arrayofsongs, arrayofartists, randint, score, uui):
             exit()
 
 
-if loginSystem(arrayofusernames, arrayofpasswords, uui): # Checks if the login system returns True
-    songGame(arrayofsongs, arrayofartists, randint, score, uui) # Runs the song game if the correct user accesses it
+
+if loginSystem(arrayofusernames, arrayofpasswords, uui): # Checks if the login system returns true
+    songGame(arrayofsongs, arrayofartists, randint, score, uui) # starts the song guessing game
 else:
-    exit()
-
-
+    exit() # exits if the login didnt work
