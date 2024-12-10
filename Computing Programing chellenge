@@ -116,17 +116,34 @@ def songGame(arrayofsongs, arrayofartists, randint, score, uui):
                 else:
                     print("That is incorrect. Game over!")
                     print(score)
-                    with open(r"Scores.txt" , "w+") as s:
-                        s.write(str(score) + f", {uui} ")  # Prints the score here
                     wrong = 2  # End the game
         else:
             time.sleep(1)
             print("Unknown error") # prints error if an unexpected logic error happens
             exit()
 
+    return score
 
+score = 0
 
 if loginSystem(arrayofusernames, arrayofpasswords, uui): # Checks if the login system returns true
-    songGame(arrayofsongs, arrayofartists, randint, score, uui) # starts the song guessing game
+    score = songGame(arrayofsongs, arrayofartists, randint, score, uui) # starts the song guessing game
+    scores = []
+    scores.append(str(score) + ", " + uui) # Store the score for the user
+    with open("Scores.txt", "w+") as f: # opens the file to read and write and assigns it as f
+        for score in scores:
+            z = score.split(", ")
+            score = z[0]
+            username = z[1]
+            f.write(f"{score}" + ", " + f"{username}\n")
 else:
     exit() # exits if the login didnt work
+
+
+
+
+#with open("Scores.txt", "w+") as f: 
+#            f.write(f"{score}" + ", " + f"{username}\n")
+
+
+#f = open(r"Scores.txt", "a")
