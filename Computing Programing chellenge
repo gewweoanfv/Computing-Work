@@ -116,6 +116,8 @@ def songGame(arrayofsongs, arrayofartists, randint, score, uui):
                 else:
                     print("That is incorrect. Game over!")
                     print(score)
+                    with open(r"Scores.txt" , "w+") as s:
+                        s.write(str(score) + str(uui))  # Prints the score here
                     wrong = 2  # End the game
         else:
             time.sleep(1)
@@ -139,11 +141,3 @@ if loginSystem(arrayofusernames, arrayofpasswords, uui): # Checks if the login s
 else:
     exit() # exits if the login didnt work
 
-
-
-
-#with open("Scores.txt", "w+") as f: 
-#            f.write(f"{score}" + ", " + f"{username}\n")
-
-
-#f = open(r"Scores.txt", "a")
